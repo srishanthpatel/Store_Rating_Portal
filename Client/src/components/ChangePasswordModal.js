@@ -32,7 +32,7 @@ class ChangePasswordModal extends Component {
     try {
       const token = localStorage.getItem('authToken');
       const res = await axios.post(
-        'http://localhost:3001/auth/update-password',
+        'https://storeratingportal-production.up.railway.app/auth/update-password',
         { oldPassword, newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );
