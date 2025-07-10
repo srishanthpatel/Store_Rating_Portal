@@ -15,7 +15,7 @@ class OwnerDashboard extends Component {
 
   fetchRatings = async () => {
     const token = localStorage.getItem('authToken');
-    const res = await axios.get('http://localhost:3001/owner/store/ratings', {
+    const res = await axios.get('https://storeratingportal-production.up.railway.app/owner/store/ratings', {
       headers: { Authorization: `Bearer ${token}` }
     });
     const ratings = res.data;
