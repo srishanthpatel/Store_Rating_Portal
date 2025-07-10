@@ -1,7 +1,7 @@
 const db = require('../config/db');
 
 exports.getAllStores = (req, res) => {
-  const userId = req.user.id; // optional
+  const userId = req.user.id;
   const search = req.query.search || '';
 
   const query = `

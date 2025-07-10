@@ -2,17 +2,14 @@ const db = require('../config/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// REGISTER a new normal user
+
 exports.register = async (req, res) => {
   try {
     const { name, email, password, address } = req.body;
 
-    // Validate required fields
     if (!name || !email || !password || !address) {
       return res.status(400).json({ message: 'All fields are required' });
     }
-
-    // Check if email already exists
     db.query('SELECT * FROM users WHERE email = ?', [email], async (err, result) => {
       if (err) return res.status(500).json({ message: 'DB error' });
 
@@ -37,7 +34,6 @@ exports.register = async (req, res) => {
   }
 };
 
-// LOGIN user
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   console.log('[LOGIN] Email:', email);

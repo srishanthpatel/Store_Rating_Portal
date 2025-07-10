@@ -10,7 +10,6 @@ exports.getAllUsers = (req, res) => {
     }
   );
 };
-
 exports.addStore = (req, res) => {
   const { name, email, address, owner_id } = req.body;
 
@@ -23,13 +22,10 @@ exports.addStore = (req, res) => {
     }
   );
 };
-// CREATE a Store Owner (Admin‑only)
-
 exports.addOwner = async (req, res) => {
   const { name, email, password, address } = req.body;
   if (!name || !email || !password || !address)
     return res.status(400).json({ error: 'All fields required' });
-
   try {
     const hashed = await bcrypt.hash(password, 10);
     db.query(
@@ -37,9 +33,9 @@ exports.addOwner = async (req, res) => {
       [name, email, hashed, address, 'OWNER'],
       (err, result) => {
         if (err) {
-          console.error('❌  SQL ERROR OBJECT:', err);
+          console.error('SQL ERROR OBJECT:', err);
           return res.status(500).json({
-            error: 'DB error',
+            error: 'Email Already Exists',
             code: err.code,
             message: err.sqlMessage
           });
@@ -49,10 +45,67 @@ exports.addOwner = async (req, res) => {
       }
     );
   } catch (e) {
-    console.error('❌ Error hashing password:', e);
+    console.error('Error hashing password:', e);
     res.status(500).json({ error: 'Server error' });
   }
 };
+exports.adduser = async (req, res) => {
+  const { name, email, password, address } = req.body;
+  if (!name || !email || !password || !address)
+    return res.status(400).json({ error: 'All fields required' });
+
+  try {
+    const hashed = await bcrypt.hash(password, 10);
+    db.query(
+      'INSERT INTO users (name,email,password,address,role) VALUES (?,?,?,?,?)',
+      [name, email, hashed, address, 'USER'],
+      (err, result) => {
+        if (err) {
+          console.error('SQL ERROR OBJECT:', err);
+          return res.status(500).json({
+            error: 'Email Already Exists',
+            code: err.code,
+            message: err.sqlMessage
+          });
+        }
+
+        res.status(201).json({ message: 'User created'});
+      }
+    );
+  } catch (e) {
+    console.error('rror hashing password:', e);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+exports.addAdmin = async (req, res) => {
+  const { name, email, password, address } = req.body;
+  if (!name || !email || !password || !address)
+    return res.status(400).json({ error: 'All fields required' });
+
+  try {
+    const hashed = await bcrypt.hash(password, 10);
+    db.query(
+      'INSERT INTO users (name,email,password,address,role) VALUES (?,?,?,?,?)',
+      [name, email, hashed, address, 'ADMIN'],
+      (err, result) => {
+        if (err) {
+          console.error('SQL ERROR OBJECT:', err);
+          return res.status(500).json({
+            error: 'Email Already Exists',
+            code: err.code,
+            message: err.sqlMessage
+          });
+        }
+
+        res.status(201).json({ message: 'Admin created'});
+      }
+    );
+  } catch (e) {
+    console.error('Error hashing password:', e);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
 exports.getSummary = (req, res) => {
   const sql = `
     SELECT
@@ -62,7 +115,7 @@ exports.getSummary = (req, res) => {
   `;
   db.query(sql, (err, rows) => {
     if (err) return res.status(500).json({ error: 'Database error' });
-    res.json(rows[0]); // rows[0] = { users: ##, stores: ##, ratings: ## }
+    res.json(rows[0]);
   });
 };
 
@@ -80,7 +133,7 @@ exports.getAllStores = (req, res) => {
   `;
   db.query(sql, (err, rows) => {
     if (err) return res.status(500).json({ error: 'Database error' });
-    res.json(rows); // array of { id, name, email, address, average_rating }
+    res.json(rows); 
   });
 };
 

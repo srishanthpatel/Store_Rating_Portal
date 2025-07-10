@@ -6,7 +6,6 @@ exports.submitOrUpdateRating = (req, res) => {
 
   if (!storeId || !value) return res.status(400).json({ error: 'storeId and value required' });
 
-  // UPSERT pattern
   db.query(
     `INSERT INTO ratings (user_id, store_id, value) VALUES (?, ?, ?)
      ON DUPLICATE KEY UPDATE value = ?`,
