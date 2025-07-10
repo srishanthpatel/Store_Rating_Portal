@@ -23,7 +23,7 @@ class LoginForm extends Component {
     }
 
     try {
-      const res = await axios.post('http://localhost:3001/auth/login', { email, password });
+      const res = await axios.post('https://storeratingportal-production.up.railway.app/auth/login', { email, password });
       const { role } = res.data.user;
        localStorage.setItem('authToken', res.data.accessToken);
         localStorage.setItem('user', JSON.stringify(res.data.user));
