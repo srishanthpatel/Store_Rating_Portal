@@ -15,7 +15,7 @@ class UserStoreList extends Component {
   fetchStores = async () => {
     const token = localStorage.getItem('authToken');
     const res = await axios.get(
-      `http://localhost:3001/stores/all?search=${this.state.search}`,
+      `https://storeratingportal-production.up.railway.app/stores/all?search=${this.state.search}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     this.setState({ stores: res.data });
@@ -38,7 +38,7 @@ class UserStoreList extends Component {
 
     try {
       await axios.post(
-        'http://localhost:3001/ratings/submit',
+        'https://storeratingportal-production.up.railway.app/ratings/submit',
         { storeId, value },
         { headers: { Authorization: `Bearer ${token}` } }
       );
