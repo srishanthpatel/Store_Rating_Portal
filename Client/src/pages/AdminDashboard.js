@@ -28,13 +28,13 @@ class AdminDashboard extends Component {
   fetchTotals = async () => {
     const token = localStorage.getItem('authToken');
     const cfg = { headers: { Authorization: `Bearer ${token}` } };
-    const res = await axios.get('http://localhost:3001/admin/summary', cfg); // adapt if needed
+    const res = await axios.get('https://storeratingportal-production.up.railway.app/admin/summary', cfg); // adapt if needed
     this.setState({ totals: res.data },this.fetchTotals);
   };
 
   fetchUsers = async () => {
     const token = localStorage.getItem('authToken');
-    const res = await axios.get('http://localhost:3001/admin/users', {
+    const res = await axios.get('https://storeratingportal-production.up.railway.app/admin/users', {
       headers: { Authorization: `Bearer ${token}` }
     });
     this.setState({ users: res.data },this.fetchUsers);
@@ -42,7 +42,7 @@ class AdminDashboard extends Component {
 
   fetchStores = async () => {
     const token = localStorage.getItem('authToken');
-    const res = await axios.get('http://localhost:3001/admin/stores', {
+    const res = await axios.get('https://storeratingportal-production.up.railway.app/admin/stores', {
       headers: { Authorization: `Bearer ${token}` }
     });
     this.setState({ stores: res.data },this.fetchStores);
