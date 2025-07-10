@@ -15,7 +15,7 @@ class CreateEntityModal extends Component {
 
   loadOwners = async () => {
     const token = localStorage.getItem('authToken');
-    const res = await axios.get('http://localhost:3001/admin/users', {
+    const res = await axios.get('https://storeratingportal-production.up.railway.app/admin/users', {
       headers: { Authorization: `Bearer ${token}` }
     });
     this.setState({ owners: res.data.filter(u => u.role === 'OWNER') });
@@ -57,13 +57,13 @@ class CreateEntityModal extends Component {
       const { entityType, name, email, address, password, owner_id } = this.state;
       if (entityType === 'STORE') {
         await axios.post(
-          'http://localhost:3001/admin/stores',
+          'https://storeratingportal-production.up.railway.app/admin/stores',
           { name, email, address, owner_id: owner_id || null },
           cfg
         );
       } else if (entityType==='OWNER') {
         await axios.post(
-          'http://localhost:3001/admin/owners',
+          'https://storeratingportal-production.up.railway.app/admin/owners',
           {
             name,
             email,
@@ -74,7 +74,7 @@ class CreateEntityModal extends Component {
       }
       else if (entityType==='USER') {
         await axios.post(
-          'http://localhost:3001/admin/users',
+          'https://storeratingportal-production.up.railway.app/admin/users',
           {
             name,
             email,
@@ -85,7 +85,7 @@ class CreateEntityModal extends Component {
       }
       else{
         await axios.post(
-          'http://localhost:3001/admin/admins',
+          'https://storeratingportal-production.up.railway.app/admin/admins',
           {
             name,
             email,
