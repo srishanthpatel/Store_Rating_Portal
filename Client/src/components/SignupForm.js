@@ -49,7 +49,7 @@ class SignupForm extends Component {
 
     const { name, email, address, password } = this.state;
     try {
-      await axios.post('http://localhost:3001/auth/register', {
+      await axios.post('https://storeratingportal-production.up.railway.app/auth/register', {
         name,
         email,
         address,
