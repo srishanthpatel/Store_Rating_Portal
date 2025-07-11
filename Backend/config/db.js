@@ -14,10 +14,10 @@ const pool = mysql.createPool({
 
 pool.getConnection((err, connection) => {
   if (err) {
-    console.error('❌ MySQL connection pool error:', err);
+    console.error('MySQL connection pool error:', err);
   } else {
-    console.log('✅ MySQL pool is connected');
-    connection.release(); // Release test connection
+    console.log('MySQL pool is connected');
+    connection.release();
   }
 });
 
