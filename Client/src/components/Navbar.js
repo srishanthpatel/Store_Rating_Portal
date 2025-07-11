@@ -11,7 +11,10 @@ class Navbar extends React.Component {
     return (
       <nav className="navbar">
         <span className="brand">Store Ratings Portal</span>
+        <div className='rolealign'>
         <span className="role">Role: {user.role}</span>
+        <span className="role">Hello {user.name} !</span>
+        </div>
         <button onClick={this.handleLogout}>Logout</button>
       </nav>
     );
