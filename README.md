@@ -155,7 +155,6 @@ User Login
 }
 
 # Response
-
 {
     "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NTIyMTMyNDYsImV4cCI6MTc1MjIxNjg0Nn0.L3Yg470U2crmVseSYx1-hXP5GDe-Yhi0I58otpAsoL4",
     "user": {
@@ -166,8 +165,8 @@ User Login
         "address": "Hyd,50001"
     }
 }
--------------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------------------------------
 
 Credits
 
