@@ -130,6 +130,10 @@ tbody tr:hover { background: #f1f1f1; }
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.4);
 }
+.rolealign{
+  display:flex;
+  flex-direction: column;
+}
 .btnalign{
   display: flex;
   align-items: flex-end;
